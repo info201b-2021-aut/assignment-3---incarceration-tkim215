@@ -1,18 +1,18 @@
-# LOADING PACKAGES
+# LOADING PACKAGES -------------------------------------------------------------
 library(tidyverse)
 
 
-# LOADING DATA
+# LOADING DATA -----------------------------------------------------------------
 incarceration_df <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
 
 
-# VARIABLES
+# VARIABLES --------------------------------------------------------------------
 # The year that had highest population in jail
 highest_jail_pop_year <- incarceration_df %>% 
   filter(total_jail_pop == max(total_jail_pop, na.rm = TRUE)) %>% 
   pull(year)
 
-# The year that had highest population in prison
+# The year that had highest population in prison 
 highest_prison_pop_year <- incarceration_df %>% 
   filter(total_prison_pop == max(total_prison_pop, na.rm = TRUE)) %>% 
   pull(year)
@@ -58,6 +58,21 @@ state_highest_white_prison <- incarceration_df %>%
   pull(state)
 
 
-# TRENDS OVER TIME CHART
+# TRENDS OVER TIME CHART -------------------------------------------------------
+# Selecting variables from the incarceration_df and making smaller dataframe
+trend_chart_df <- data.frame(
+  incarceration_df %>% 
+    select(year, state, black_prison_pop)
+)
+
+# Found that "NY" and "CA" has the highest population in prison from the codes above
+filter_states <- trend_chart_df %>% 
+  filter(state %in% c("NY","CA"))
+
+# Building a chart that displays trend of BLACK prison population of "NY" and "CA"
+black_prisoner_trend_chart <- ggplot(filter_states, aes(x=year, y=black_prison_pop)) + 
+  geom_point(aes(col = state)) +
+  labs(title = "Trend of Black Prisoner Population in NY and CA", x = "Year", y = "Black Prisoner Population", color = "State") 
 
 
+# VARIABLE COMPARISON CHART ----------------------------------------------------

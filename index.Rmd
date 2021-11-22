@@ -1,5 +1,5 @@
 ---
-title: "index"
+title: "Assignment 3: Incarceration"
 author: "Taeyun Kim"
 date: "11/21/2021"
 output: html_document
@@ -14,17 +14,17 @@ library("knitr")
 source("C:\\Users\\kimta\\INFO201\\assignment-3---incarceration-tkim215\\analysis.R")
 ```
 
-## Introduction
+## _Introduction_
 
 
-## Summary
+## _Summary_
 
 
-## Trends over time chart
+## _Trends over time chart_
 
 
-## Variable comparison chart
+## _Variable comparison chart_
 
 
-## Map
+## _Map_
 
