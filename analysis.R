@@ -66,13 +66,32 @@ trend_chart_df <- data.frame(
 )
 
 # Found that "NY" and "CA" has the highest population in prison from the codes above
-filter_states <- trend_chart_df %>% 
+trend_filter_states <- trend_chart_df %>% 
   filter(state %in% c("NY","CA"))
 
 # Building a chart that displays trend of BLACK prison population of "NY" and "CA"
-black_prisoner_trend_chart <- ggplot(filter_states, aes(x=year, y=black_prison_pop)) + 
+trend_chart <- ggplot(filter_states, aes(x=year, y=black_prison_pop)) + 
   geom_point(aes(col = state)) +
   labs(title = "Trend of Black Prisoner Population in NY and CA", x = "Year", y = "Black Prisoner Population", color = "State") 
 
 
 # VARIABLE COMPARISON CHART ----------------------------------------------------
+# Selecting variables from the incarceration_df and making smaller dataframe
+comparison_chart_df <- data.frame(
+  incarceration_df %>% 
+    select(year, state, black_prison_pop, black_pop_15to64)
+)
+
+comparison_filter_states <- comparison_chart_df %>%
+  filter(state == "CA")
+
+# Building a chart that displays the relationship between black population and black prisoner in CA
+variable_comparison_chart <-ggplot(comparison_filter_states, aes(x=black_pop_15to64, y=black_prison_pop))+ 
+  geom_point()+
+  geom_smooth(method = "loess", formula = y ~ x, se=FALSE, fullrange=TRUE)+
+  labs(title="title",  x="Population 15 to 64", y = "Black Prisoner")
+
+
+# MAP --------------------------------------------------------------------------
+
+
