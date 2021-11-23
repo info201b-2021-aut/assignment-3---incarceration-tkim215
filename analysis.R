@@ -92,7 +92,8 @@ comparison_filter_states <- comparison_chart_df %>%
 variable_comparison_chart <-ggplot(comparison_filter_states, aes(x=black_pop_15to64, y=black_prison_pop)) + 
   geom_point() +
   geom_smooth(method = "loess", formula = y ~ x, se=FALSE, fullrange=TRUE) +
-  labs(title="title",  x="Population 15 to 64", y = "Black Prisoner")
+  labs(title="Relationship between Black Population and Black Prisoner in CA",
+       x="Black Population between 15 and 16", y = "Black Prisoner")
 
 
 # MAP --------------------------------------------------------------------------

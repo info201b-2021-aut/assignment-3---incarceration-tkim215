@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+options(scipen=999)
 ```
 
 ```{r include = FALSE, message = FALSE, warning = FALSE}
@@ -15,19 +16,23 @@ source("C:\\Users\\kimta\\INFO201\\assignment-3---incarceration-tkim215\\analysi
 ```
 
 ## _Introduction_
-
-
+In this project, the dataset contains number of various populations by their _races_ in jail and prison from 1970 to 2018. The data that I gave more focus on are the **black population** who are either in _jail_ or _prison_. Also, by making charts, it became able to see the trend of black population in prison; the relationship between black population vs black prisoner in CA; the overall population of black population in jail in 2018. By doing so, it helped visualizing how the black populations were treated regarding the American jail/prison. 
+  
+  
 ## _Summary_
-
-
-## _Trends over time chart_
+The dataset contains data regarding _jail_ and _prison_. The year that jail had the most population is ``r highest_jail_pop_year`` while the year that prison had the most population is ``r highest_prison_pop_year``. 
+While the _prison_ had maximum of ``r highest_black_population_prison`` black population and ``r highest_white_population_prison`` white population, the _jail_ had maximum of ``r highest_black_population_jail`` black population and ``r highest_white_population_jail`` white population. 
+I also used the dataset to determine the state with the highest population with specific race. ``r state_highest_black_jail`` has both the highest black and white population in jail. For prison, ``r state_highest_black_prison`` has the most black population while ``r state_highest_white_prison`` has the most white population. 
+  
+  
+## _Trends Over Time Chart_
 ```{r echo = FALSE, warning = FALSE}
 trend_chart
 ```
   
   Explain the chart1
 
-## _Variable comparison chart_
+## _Variable Comparison Chart_
 ```{r echo = FALSE, warning = FALSE}
 variable_comparison_chart
 ```
