@@ -1,5 +1,7 @@
 # LOADING PACKAGES -------------------------------------------------------------
+library(dplyr)
 library(tidyverse)
+library(maps)
 
 
 # LOADING DATA -----------------------------------------------------------------
@@ -70,7 +72,7 @@ trend_filter_states <- trend_chart_df %>%
   filter(state %in% c("NY","CA"))
 
 # Building a chart that displays trend of BLACK prison population of "NY" and "CA"
-trend_chart <- ggplot(filter_states, aes(x=year, y=black_prison_pop)) + 
+trend_chart <- ggplot(trend_filter_states, aes(x=year, y=black_prison_pop)) + 
   geom_point(aes(col = state)) +
   labs(title = "Trend of Black Prisoner Population in NY and CA", x = "Year", y = "Black Prisoner Population", color = "State") 
 
@@ -82,16 +84,47 @@ comparison_chart_df <- data.frame(
     select(year, state, black_prison_pop, black_pop_15to64)
 )
 
+# Filtering the state, California (CA)
 comparison_filter_states <- comparison_chart_df %>%
   filter(state == "CA")
 
 # Building a chart that displays the relationship between black population and black prisoner in CA
-variable_comparison_chart <-ggplot(comparison_filter_states, aes(x=black_pop_15to64, y=black_prison_pop))+ 
-  geom_point()+
-  geom_smooth(method = "loess", formula = y ~ x, se=FALSE, fullrange=TRUE)+
+variable_comparison_chart <-ggplot(comparison_filter_states, aes(x=black_pop_15to64, y=black_prison_pop)) + 
+  geom_point() +
+  geom_smooth(method = "loess", formula = y ~ x, se=FALSE, fullrange=TRUE) +
   labs(title="title",  x="Population 15 to 64", y = "Black Prisoner")
 
 
 # MAP --------------------------------------------------------------------------
+# Selecting variables from incarceration_df to make smaller dataframe
+map_df <- incarceration_df %>%
+  filter(year == 2018) %>%
+  select(year, fips, black_jail_pop)
 
+# USing county.fips function for new dataframe
+county_df <- county.fips %>%
+  separate(polyname, c("polyname", "sub"))
 
+# Importing map of United States divided in counties
+state_df <- map_data("county") %>%
+  rename(polyname = region) %>%
+  full_join(county_df, by = "polyname")
+
+merged_df <- full_join(state_df, map_df, by = "fips")
+
+# Building a chart(map) displays the population of black jail population in 2018
+map_chart <- ggplot(merged_df) +
+  geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = black_jail_pop), color = "grey", size = 0.3) +
+  coord_map()+
+  scale_colour_gradient2(low = "white", mid = "yellow", high = "red", guide = "colorbar", aesthetics = "fill") + 
+  theme(
+    axis.line = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_blank(),
+    plot.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_blank()
+  ) +
+  ggtitle("Black Jail Population in 2018")

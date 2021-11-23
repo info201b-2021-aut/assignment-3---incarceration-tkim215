@@ -5,11 +5,11 @@ date: "11/21/2021"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r include=FALSE}
+```{r include = FALSE, message = FALSE, warning = FALSE}
 library("knitr")
 source("C:\\Users\\kimta\\INFO201\\assignment-3---incarceration-tkim215\\analysis.R")
 ```
@@ -21,10 +21,24 @@ source("C:\\Users\\kimta\\INFO201\\assignment-3---incarceration-tkim215\\analysi
 
 
 ## _Trends over time chart_
-
+```{r echo = FALSE, warning = FALSE}
+trend_chart
+```
+  
+  Explain the chart1
 
 ## _Variable comparison chart_
-
+```{r echo = FALSE, warning = FALSE}
+variable_comparison_chart
+```
+  
+  Explain the chart2
 
 ## _Map_
+```{r echo = FALSE, warning = FALSE}
+map_chart
+```
+  
+  Explain the chart3
+
 
