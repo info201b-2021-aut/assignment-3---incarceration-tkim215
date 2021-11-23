@@ -14,36 +14,47 @@ options(scipen=999)
 library("knitr")
 source("C:\\Users\\kimta\\INFO201\\assignment-3---incarceration-tkim215\\analysis.R")
 ```
-
+  
+    
+    
 ## _Introduction_
 In this project, the dataset contains number of various populations by their _races_ in jail and prison from 1970 to 2018. The data that I gave more focus on are the **black population** who are either in _jail_ or _prison_. Also, by making charts, it became able to see the trend of black population in prison; the relationship between black population vs black prisoner in CA; the overall population of black population in jail in 2018. By doing so, it helped visualizing how the black populations were treated regarding the American jail/prison. 
   
-  
+    
+    
 ## _Summary_
 The dataset contains data regarding _jail_ and _prison_. The year that jail had the most population is ``r highest_jail_pop_year`` while the year that prison had the most population is ``r highest_prison_pop_year``. 
 While the _prison_ had maximum of ``r highest_black_population_prison`` black population and ``r highest_white_population_prison`` white population, the _jail_ had maximum of ``r highest_black_population_jail`` black population and ``r highest_white_population_jail`` white population. 
 I also used the dataset to determine the state with the highest population with specific race. ``r state_highest_black_jail`` has both the highest black and white population in jail. For prison, ``r state_highest_black_prison`` has the most black population while ``r state_highest_white_prison`` has the most white population. 
   
-  
+    
+    
 ## _Trends Over Time Chart_
 ```{r echo = FALSE, warning = FALSE}
 trend_chart
 ```
   
-  Explain the chart1
-
+I made this chart to see the _trend of the population of black prisoners_ over time. From the variable `state_highest_black_prison` and `state_highest_white_prison`, we figured out that ``r state_highest_black_prison`` and ``r state_highest_white_prison`` have the highest population in prison. So, I choose these two states to see the trend of black prisoners.   
+Looking at the chart, it appears that the population of black prisoners in both "CA" and "NY" _decrease from late 1990's_. 
+  
+    
+    
 ## _Variable Comparison Chart_
 ```{r echo = FALSE, warning = FALSE}
 variable_comparison_chart
 ```
   
-  Explain the chart2
-
+From the variables regarding the state with the highest jail or prison population, **"CA"** was constantly showing up as the answer. So, I plotted this chart that shows the relationship between the black population(15 to 64 years old) and the number of black prisoners in CA.   
+The graph seems to be a straight line with a positive slope. This could indicate that as the black population increases, the number of black prisoner also increases in CA. However, I am not sure if we can give a credit to this graph because it seems little bit obvious that if there are larger population, there could be a higher number of population who commits crimes and go to the prison.   
+But regardless, the graph shows that there is a _positive relationship_ between the black population and black prisoners
+  
+    
+    
 ## _Map_
 ```{r echo = FALSE, warning = FALSE}
 map_chart
 ```
   
-  Explain the chart3
-
+This chart, shows the _number of black people who were in jail in 2018 throughout the entire country_. I have divided the America into counties and presented the population density by using a color. As the color gets closer to "white", it indicates the low population of black in jail and as the color gets closer to "red", it means that there were many black people in jail in 2018.
+By looking at the map and the color, it is easy to determine that "CA" has the highest black jail population. This matches with my outcome from the variable, `state_highest_black_jail`. 
 
